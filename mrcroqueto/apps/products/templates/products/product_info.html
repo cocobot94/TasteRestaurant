@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+{% block content %}
+<section class="ftco-section bg-light" id="section-offer">
+    <div class="container">
+      {% if 'updated' in request.GET %}
+      <p style="color:green;">
+        Product edited successfully !!! 
+      {% endif %}
+      <div class="row">
+        <div class="col-md-12 text-center mb-5 ftco-animate">
+          <h4 class="ftco-sub-title">{{ object.menu }}</h4>
+          {% if object.category_product  %}
+          <h3 class="ftco-sub-title">{% for category in object.category_product.all %}
+                {{ category.description }}{% if not forloop.last %},{% endif %}  
+            {% endfor %}</h3>
+          {% endif %}
+          <h2 class="display-4">{{ object.name }}</h2>
+          <div class="row justify-content-center">
+            <div class="col-md-7">
+
+            </div>
+          </div>
+        </div>
+          <div class="col-md-12">
+            <div >
+                <div class="item">
+                  <div class="media d-block mb-4 text-center ftco-media ftco-animate border-0">
+                    <a href="{{ product.image.url }}" class="ftco-thumbnail image-popup">
+                      <img src="{{ object.image.url }}" alt="" class="img-fluid">
+                    </a>
+                    <div class="media-body p-md-5 p-4">
+                      <h5 class="text-primary">${{ object.price }}</h5>
+                      <p class="mb-4">{{ object.description|safe }}</p>
+
+                      <p class="mb-0"><a href="#" class="btn btn-primary btn-sm">Order Now!</a></p>
+                    </div>
+                    {% if request.user.is_staff %}
+                        <p class="btn btn-info btn-sm"> <a style="color: white; " href="{% url 'update_product' object.id %}">Edit</a></p>
+                        <p class="btn btn-danger  btn-sm"><a style="color: white; " href="{% url 'delete_product' object.id %}">Delete</a></p>
+                    {% endif %}
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- END section -->
+{%endblock%}
