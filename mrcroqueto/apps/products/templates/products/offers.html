@@ -21,9 +21,10 @@
               {% for product in products %}
                 <div class="item">
                   <div class="media d-block mb-4 text-center ftco-media ftco-animate border-0">
-                    <img src="{{ product.image.url }}" alt="Free Template by Free-Template.co" class="img-fluid">
+                    <p><a style="color: blue; " href="{% url 'product_info' product.id %}"><img src="{{ product.image.url }}" alt="Free Template by Free-Template.co" class="img-fluid"></a></p>
                     <div class="media-body p-md-5 p-4">
                       <h5 class="text-primary">${{ product.price }}</h5>
+                      <h5 class="text-primary"><s>${{ product.old_price }}</s></h5>
                       <h5 class="mt-0 h4">{{ product.name }}</h5>
                       <p class="mb-4">{{ product.description|safe }}</p>
 

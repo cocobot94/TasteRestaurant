@@ -8,16 +8,32 @@ ALLOWED_HOSTS = ["croqueto-3e4467808c40.herokuapp.com"]
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
+import dj_database_url
+
+# Configuración de la base de datos para Heroku Postgres
+DATABASES = {"default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))}
+
+"""DATABASES = {
+    "default": {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
+}
+}"""
+
+"""DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "d23s6fll5v19vb",
-        "PASSWORD": "d43aea101018c8a4d9d29be5175d0a8937b3953bd3627be22ef22886c6c8bca3",
-        "USER": "ulgjagiccredxt",
-        "HOST": "ec2-35-169-9-79.compute-1.amazonaws.com",
+        "NAME": "d7i3340qqkik0p",
+        "PASSWORD": "44303b6cd978c82fd206bd6874309a48abd66cdaf3d52b0acd7e23fd0098a005",
+        "USER": "oxmqtxmmgpafld",
+        "HOST": "ec2-3-232-218-211.compute-1.amazonaws.com",
         "PORT": "5432",
     }
-}
+}"""
 
 
 # Static files (CSS, JavaScript, Images)
